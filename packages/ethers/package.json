@@ -1,0 +1,35 @@
+{
+    "name": "@vechainfoundation/hardhat-ethers",
+    "version": "0.0.1",
+    "description": "Hardhat Vechain Ethers Plugin",
+    "repository": "github:vechainfoundation/hardhat-plugins",
+    "author": "Electi Consulting LTD",
+    "license": "TODO",
+    "private": true,
+    "main": "dist/src/index.js",
+    "types": "dist/src/index.d.ts",
+    "keywords": [
+      "ethereum",
+      "smart-contracts",
+      "hardhat",
+      "hardhat-plugin"
+    ],
+    "scripts": {
+      "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && tslint --fix --config tslint.json --project tsconfig.json",
+      "lint": "tslint --config tslint.json --project tsconfig.json",
+      "test": "mocha --recursive \"test/**/*.ts\" --exit",
+      "build": "tsc",
+      "watch": "tsc -w",
+      "prepublishOnly": "npm run build"
+    },
+    "files": [
+      "dist/src/",
+      "src/",
+      "LICENSE",
+      "README.md"
+    ],
+    "devDependencies": {
+      "@nomiclabs/hardhat-ethers": "^2.2.2"
+    }
+  }
+  
