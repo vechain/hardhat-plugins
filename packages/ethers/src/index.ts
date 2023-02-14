@@ -2,6 +2,7 @@ import { extendEnvironment } from "hardhat/config";
 import { lazyObject } from "hardhat/plugins";
 import type EthersT from "ethers";
 
+import "@vechainfoundation/hardhat-common";
 import "./type-extensions";
 
 import {
@@ -26,16 +27,15 @@ const registerCustomInspection = (BigNumber: any) => {
     };
 };
 
-extendEnvironment((hre) => {
+extendEnvironment(hre => {
     hre.ethers = lazyObject(() => {
         const { ethers } = require("ethers") as typeof EthersT;
 
         registerCustomInspection(ethers.BigNumber);
 
         const provider = hre.vechain!;
-        const jsonRpcProvider = modifyProvider(new EthersProviderWrapper(provider));
+        const jsonRpcProvider = modifyProvider(new EthersProviderWrapper(provider as any));
         const { proxy } = createUpdatableTargetProxy(jsonRpcProvider);
-
 
         return {
             ...ethers,

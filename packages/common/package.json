@@ -7,6 +7,9 @@
     "author": "Electi Consulting LTD",
     "main": "dist/src/index.js",
     "private": true,
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && tslint --fix --config tslint.json --project tsconfig.json",
         "lint": "tslint --config tslint.json --project tsconfig.json",
@@ -16,9 +19,12 @@
         "prepublishOnly": "npm run build"
     },
     "devDependencies": {
+        "@types/mocha": "^10.0.1",
         "@vechain/connex-driver": "^2.0.12",
         "@vechain/connex-framework": "^2.0.12",
         "@vechain/web3-providers-connex": "^1.0.0",
-        "hardhat": "^2.12.7"
+        "hardhat": "^2.12.7",
+        "mocha": "^10.2.0",
+        "typescript": "^4.9.5"
     }
 }

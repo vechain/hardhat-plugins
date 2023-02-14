@@ -7,7 +7,7 @@ import type {
   Libraries as LibrariesT
 } from "@nomiclabs/hardhat-ethers/types";
 
-import "@vechainfoundation/hardhat-common/dist/type-extensions";
+import "@vechainfoundation/hardhat-common/dist/src/type-extensions"
 
 // As seen in https://github.com/NomicFoundation/hardhat/blob/290451dc92fc6a40a59a7ffbdf1464874508fd11/packages/hardhat-ethers/src/internal/type-extensions.ts
 declare module "hardhat/types/runtime" {

@@ -1,7 +1,7 @@
 {
-    "name": "@vechainfoundation/hardhat-ethers",
+    "name": "@vechainfoundation/hardhat-web3",
     "version": "0.0.1",
-    "description": "Hardhat Vechain Ethers Plugin",
+    "description": "Hardhat Vechain Web3 Plugin",
     "repository": "github:vechainfoundation/hardhat-plugins",
     "author": "Electi Consulting LTD",
     "private": true,
@@ -28,7 +28,7 @@
       "README.md"
     ],
     "devDependencies": {
-      "@nomiclabs/hardhat-ethers": "^2.2.2"
+      "@nomiclabs/hardhat-web3": "^2.0.0"
     }
   }
   
