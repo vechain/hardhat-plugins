@@ -2,7 +2,6 @@ import { extendEnvironment } from "hardhat/config";
 import { lazyObject } from "hardhat/plugins";
 import type EthersT from "ethers";
 
-import "@vechainfoundation/hardhat-common";
 import "./type-extensions";
 
 import {
@@ -30,7 +29,6 @@ const registerCustomInspection = (BigNumber: any) => {
 extendEnvironment(hre => {
     hre.ethers = lazyObject(() => {
         const { ethers } = require("ethers") as typeof EthersT;
-
         registerCustomInspection(ethers.BigNumber);
 
         const provider = hre.vechain!;
