@@ -19,13 +19,13 @@
         "prepublishOnly": "npm run build"
     },
     "devDependencies": {
-        "@types/mocha": "^10.0.1",
+		"ethers": "^5.7.2",
+        "thor-devkit": "^2.0.6",
         "@vechain/connex-driver": "^2.0.12",
         "@vechain/connex-framework": "^2.0.12",
-        "@vechain/web3-providers-connex": "^1.0.0",
-        "hardhat": "^2.12.7",
-        "mocha": "^10.2.0",
-        "thor-devkit": "^2.0.6",
-        "typescript": "^4.9.5"
+        "@vechain/web3-providers-connex": "^1.0.0"
+    },
+    "peerDependencies": {
+		"ethers": "^5.7.2"
     }
 }

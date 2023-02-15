@@ -29,6 +29,9 @@
     ],
     "devDependencies": {
       "@nomiclabs/hardhat-ethers": "^2.2.2"
+    },
+    "peerDependencies": {
+      "ethers": "^5.7.2"
     }
   }
   
