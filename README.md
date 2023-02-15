@@ -1,5 +1,4 @@
 # hardhat-plugins
 
 # TODO
-- Add licenses
-- Ethers README.md
+- Add `README.md`s

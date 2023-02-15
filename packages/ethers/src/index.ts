@@ -27,6 +27,9 @@ const registerCustomInspection = (BigNumber: any) => {
 };
 
 extendEnvironment(hre => {
+    if (hre.vechain === undefined) {
+        return;
+    }
     hre.ethers = lazyObject(() => {
         const { ethers } = require("ethers") as typeof EthersT;
         registerCustomInspection(ethers.BigNumber);
