@@ -3,7 +3,7 @@ A package extending the Hardhat environment with a `vechain` field.
 The field contains a Hardhat `EthereumProvider` enabling requests via Connex.
 
 # Usage
-- Modify `hardhat.config.js` to include `require("@vechainfoundation/hardhat-ethers")`
+- Modify `hardhat.config.js` to include `require("@vechainfoundation/hardhat-vechain")`
 - Configure `networks` to include a `vechain` configuration
 > *Note: A solo Thor instance should be running for the below configurations to work*
 
@@ -11,7 +11,7 @@ The field contains a Hardhat `EthereumProvider` enabling requests via Connex.
 ```js
 const {
   VECHAIN_URL_SOLO
-} = require("@andreas-papageorgiou/hardhat-vechain");
+} = require("@vechainfoundation/hardhat-vechain");
 
 module.exports = {
     solidity: {

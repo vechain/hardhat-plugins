@@ -1,5 +1,5 @@
 {
-    "name": "@andreas-papageorgiou/hardhat-vechain",
+    "name": "@vechainfoundation/hardhat-vechain",
     "version": "0.0.1",
     "description": "Hardhat plugin for a VeChain provider",
     "homepage": "https://github.com/vechainfoundation/hardhat-plugins",
