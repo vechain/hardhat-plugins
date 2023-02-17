@@ -12,7 +12,7 @@ To obtain access you need to
 To obtain access to the registry you need to:
 - [Create a personal GitHub access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) and
 - Either:
-    - use `npm login`
+    - use `npm login`:
         ```
         $ npm login --scope=@vechainfoundation --auth-type=legacy --registry=https://npm.pkg.github.com
         
