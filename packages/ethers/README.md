@@ -1,5 +1,5 @@
 # hardhat-vechain
-A package extending the Hardhat Ethers to use a Connex provider.
+A package extending Hardhat Ethers to use a Connex provider.
 
 # Usage
 - Modify `hardhat.config.js` to require `@vechainfoundation/hardhat-vechain` and `@vechainfoundation/hardhat-ethers`.
@@ -28,7 +28,7 @@ module.exports = {
 ## Testing
 - Use Hardhat Ethers as usual
 ```js
-describe("hardhat-ethers", function() {
+describe("vechain-ethers", function() {
     it("should be able to get signers", async function () {
         const accounts = await ethers.getSigners();
         assert.equals(accounts[0], "0xf077b491b355e64048ce21e3a6fc4751eeea77fa");

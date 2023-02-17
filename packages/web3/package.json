@@ -4,34 +4,31 @@
     "description": "Hardhat Vechain Web3 Plugin",
     "repository": "github:vechainfoundation/hardhat-plugins",
     "author": "Electi Consulting LTD",
-    "private": true,
-    "main": "dist/src/index.js",
-    "types": "dist/src/index.d.ts",
+    "main": "dist/index.js",
     "keywords": [
-      "ethereum",
-      "smart-contracts",
-      "hardhat",
-      "hardhat-plugin"
+        "ethereum",
+        "smart-contracts",
+        "hardhat",
+        "hardhat-plugin"
     ],
     "scripts": {
-      "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && tslint --fix --config tslint.json --project tsconfig.json",
-      "lint": "tslint --config tslint.json --project tsconfig.json",
-      "test": "mocha --recursive \"test/**/*.ts\" --exit",
-      "build": "tsc",
-      "watch": "tsc -w",
-      "prepublishOnly": "npm run build"
+        "build": "tsc --build"
     },
     "files": [
-      "dist/src/",
-      "src/",
-      "LICENSE",
-      "README.md"
+        "dist",
+        "LICENSE",
+        "README.md"
     ],
     "devDependencies": {
-      "@nomiclabs/hardhat-web3": "^2.0.0"
+        "web3": "^1.0.0-beta.36",
+        "hardhat": "^2.12.7",
+        "@nomiclabs/hardhat-web3": "^2.0.0",
+        "@vechainfoundation/hardhat-vechain": "^0.0.1"
     },
     "peerDependencies": {
-      "web3": "^1.0.0-beta.36"
+        "web3": "^1.0.0-beta.36",
+        "hardhat": "^2.12.7",
+        "@nomiclabs/hardhat-web3": "^2.0.0",
+        "@vechainfoundation/hardhat-vechain": "^0.0.1"
     }
-  }
-  
+}
