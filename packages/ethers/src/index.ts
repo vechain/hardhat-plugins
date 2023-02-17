@@ -2,6 +2,7 @@ import { extendEnvironment } from "hardhat/config";
 import { lazyObject } from "hardhat/plugins";
 import type EthersT from "ethers";
 
+import { VechainHardhatPluginError } from "@vechainfoundation/hardhat-vechain/dist/error";
 import "./type-extensions";
 
 import {
@@ -28,7 +29,11 @@ const registerCustomInspection = (BigNumber: any) => {
 
 extendEnvironment(hre => {
     if (hre.vechain === undefined) {
-        return;
+        if (hre.network.name === "vechain") {
+            throw new VechainHardhatPluginError("Ethers plugin requires hardhat-vechain");
+        } else {
+            return;
+        }
     }
     hre.ethers = lazyObject(() => {
         const { ethers } = require("ethers") as typeof EthersT;

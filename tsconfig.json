@@ -6,9 +6,6 @@
         "declarationMap": true,
         "sourceMap": true,
         "strict": true,
-        "esModuleInterop": true,
-        "paths": {
-            "hardhat-common": ["./packages/common/dist"]
-        }
+        "esModuleInterop": true
     }
 }
