@@ -8,7 +8,7 @@
         "strict": true,
         "esModuleInterop": true,
         "paths": {
-            "@vechainfoundation/hardhat-common": ["./packages/common"]
+            "hardhat-common": ["./packages/common/dist"]
         }
     }
 }

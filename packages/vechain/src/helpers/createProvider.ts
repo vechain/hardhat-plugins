@@ -7,7 +7,7 @@ import { createNetwork } from "./createNetwork";
 import { createWallet } from "./createWallet";
 
 export async function createProvider(networkConfig: NetworkConfig): Promise<Provider> {
-    const config = networkConfig as  HttpNetworkConfig;
+    const config = networkConfig as HttpNetworkConfig;
 
     const net = createNetwork(config);
     const wallet = createWallet(config);

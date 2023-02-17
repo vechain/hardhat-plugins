@@ -4,5 +4,5 @@ export const VECHAIN_DEFAULT_MNEMONIC = "denial kitchen pet squirrel other broom
 export const VECHAIN_URL_SOLO = "http://127.0.0.1:8669";
 
 // TODO: set and expose correctly:
-export const VECHAIN_URL_TESTNET = "http://127.0.0.1:8669";
-export const VECHAIN_URL_MAINNET = "http://127.0.0.1:8669";
+// export const VECHAIN_URL_TESTNET = "http://127.0.0.1:8669";
+// export const VECHAIN_URL_MAINNET = "http://127.0.0.1:8669";
