@@ -2,7 +2,7 @@
     "name": "root",
     "version": "0.0.0",
     "author": "Electi Consulting LTD",
-    "license": "MIT",
+    "license": "See individual packages",
     "private": true,
     "workspaces": [
         "packages/*"
