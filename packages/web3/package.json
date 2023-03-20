@@ -1,5 +1,5 @@
 {
-    "name": "@vechainfoundation/hardhat-web3",
+    "name": "@vechain/hardhat-web3",
     "version": "0.0.1",
     "description": "Hardhat Vechain Web3 Plugin",
     "repository": "github:vechainfoundation/hardhat-plugins",
