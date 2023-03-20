@@ -1,0 +1,30 @@
+{
+    "name": "@vechain/hardhat-ethers",
+    "version": "0.0.1",
+    "license": "MIT",
+    "description": "Hardhat Vechain Ethers Plugin",
+    "repository": "github:vechainfoundation/hardhat-plugins",
+    "author": "Electi Consulting LTD",
+    "main": "dist/index.js",
+    "scripts": {
+      "build": "tsc --build"
+    },
+    "files": [
+      "dist",
+      "LICENSE",
+      "README.md"
+    ],
+    "devDependencies": {
+      "ethers": "^5.0.0",
+      "hardhat": "^2.12.7",
+      "@nomiclabs/hardhat-ethers": "^2.2.2",
+      "@vechainfoundation/hardhat-vechain": "^0.0.1"
+    },
+    "peerDependencies": {
+      "ethers": "^5.0.0",
+      "hardhat": "^2.12.7",
+      "@nomiclabs/hardhat-ethers": "^2.2.2",
+      "@vechainfoundation/hardhat-vechain": "^0.0.1"
+    }
+  }
+  

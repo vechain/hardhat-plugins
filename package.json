@@ -1,0 +1,27 @@
+{
+    "name": "root",
+    "version": "0.0.0",
+    "author": "Electi Consulting LTD",
+    "license": "See individual packages",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "build": "tsc --build packages/vechain packages/ethers packages/web3"
+    },
+    "devDependencies": {
+        "typescript": "^4.9.5",
+        "hardhat": "^2.12.7",
+        "ethers": "^5.7.2",
+        "web3": "^1.0.0-beta.36",
+        "mocha": "^10.2.0",
+        "@types/mocha": "^10.0.1",
+        "@vechainfoundation/hardhat-vechain": "0.0.1",
+        "@vechainfoundation/hardhat-ethers": "0.0.1",
+        "@vechainfoundation/hardhat-web3": "0.0.1"
+    },
+    "peerDependencies": {
+        "hardhat": "^2.12.7"
+    }
+}
