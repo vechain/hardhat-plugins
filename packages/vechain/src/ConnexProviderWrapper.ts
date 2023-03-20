@@ -22,13 +22,28 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
             });
     }
 
-    public delegate(delegate: DelegateOpt) {
+    public setProvider(provider: Promise<Provider>) {
+        this._provider.then(provider => {
+            provider.emit = provider.emit.bind(provider);
+        });
+
+        this._provider = provider;
+
         this._provider
+            .then(provider => {
+                provider.emit = this.emit.bind(this);
+            });
+    }
+
+    public async delegate(delegate: DelegateOpt) {
+        return this
+            ._provider
             .then(provider => provider.enableDelegate(delegate));
     }
 
-    public disableDelegate() {
-        this._provider
+    public async disableDelegate() {
+        return this
+            ._provider
             .then(provider => provider.disableDelegate());
     }
 
