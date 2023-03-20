@@ -2,7 +2,7 @@
 A package extending Hardhat Ethers to use a Connex provider.
 
 # Usage
-- Modify `hardhat.config.js` to require `@vechainfoundation/hardhat-vechain` and `@vechainfoundation/hardhat-ethers`.
+- Modify `hardhat.config.js` to require `@vechain/hardhat-vechain` and `@vechain/hardhat-ethers`.
 - Configure `networks` to include a `vechain` configuration
 > *Note: A solo Thor instance should be running for the below configurations to work*
 
@@ -10,8 +10,8 @@ A package extending Hardhat Ethers to use a Connex provider.
 ```js
 const {
   VECHAIN_URL_SOLO
-} = require("@vechainfoundation/hardhat-vechain");
-require("@vechainfoundation/hardhat-ethers");
+} = require("@vechain/hardhat-vechain");
+require("@vechain/hardhat-ethers");
 
 module.exports = {
     solidity: {

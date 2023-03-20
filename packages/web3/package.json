@@ -23,12 +23,12 @@
         "web3": "^1.0.0-beta.36",
         "hardhat": "^2.12.7",
         "@nomiclabs/hardhat-web3": "^2.0.0",
-        "@vechainfoundation/hardhat-vechain": "^0.0.1"
+        "@vechain/hardhat-vechain": "^0.0.1"
     },
     "peerDependencies": {
         "web3": "^1.0.0-beta.36",
         "hardhat": "^2.12.7",
         "@nomiclabs/hardhat-web3": "^2.0.0",
-        "@vechainfoundation/hardhat-vechain": "^0.0.1"
+        "@vechain/hardhat-vechain": "^0.0.1"
     }
 }
