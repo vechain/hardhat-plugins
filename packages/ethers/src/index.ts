@@ -2,7 +2,7 @@ import { extendEnvironment } from "hardhat/config";
 import { lazyObject } from "hardhat/plugins";
 import type EthersT from "ethers";
 
-import { VechainHardhatPluginError } from "@vechainfoundation/hardhat-vechain/dist/error";
+import { VechainHardhatPluginError } from "@vechain/hardhat-vechain/dist/error";
 import "./type-extensions";
 
 import {
