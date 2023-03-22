@@ -1,25 +1,9 @@
-# Installation
-Packages are currently published in GitHub's registry.
-To obtain access you need to
-- [authenticate](#authentication) and 
-- add the following to your project's `.npmrc` file:
-    ```
-    @vechainfoundation:registry=https://npm.pkg.github.com
-    ```
-> *Note: See [Installing a package](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package)*
+# Hardhat Plugins for Vechain
+This is a mono-repo containing plugins that extend the hardhat environment with a [Connex provider](https://github.com/vechain/web3-providers-connex).
 
-## Authentication
-To obtain access to the registry you need to:
-- [Create a personal GitHub access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) and
-- Either:
-    - use `npm login`:
-        ```
-        $ npm login --scope=@vechainfoundation --auth-type=legacy --registry=https://npm.pkg.github.com
-        
-        > Username: USERNAME
-        > Password: TOKEN
-        ```
-    - or add the following line with your credentials in your project's `.npmrc`:
-        ```
-        //npm.pkg.github.com/:_authToken=TOKEN
-        ```
+## Packages
+| package | status | desc |
+| - | - | - |
+| [hardhat-vechain](packages/vechain) | [![npm](https://badge.fury.io/js/%40vechain%2Fhardhat-vechain.svg)](https://www.npmjs.com/package/@vechain/hardhat-vechain) | Injection of a wrapped connex provider in `hre.vechain` |
+| [hardhat-web3](packages/web3) | [![npm](https://badge.fury.io/js/%40vechain%2Fhardhat-web3.svg)](https://www.npmjs.com/package/@vechain/hardhat-web3) | Modification of Hardhat's Web3 environment to use a `hardhat-vechain` provider |
+| [hardhat-ethers](packages/ethers) | [![npm](https://badge.fury.io/js/%40vechain%2Fhardhat-ethers.svg)](https://www.npmjs.com/package/@vechain/hardhat-ethers) | Modification of Hardhat's Ethers environment to use the `hardhat-vechain` provider |
