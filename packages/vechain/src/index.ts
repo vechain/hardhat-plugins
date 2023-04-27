@@ -7,6 +7,7 @@ extendEnvironment(hre => {
         return;
     }
     hre.vechain = lazyObject(() => new ConnexProviderWrapper(hre.network.config));
+    hre.network.provider = hre.vechain;
 });
 
 export * from "./constants";
