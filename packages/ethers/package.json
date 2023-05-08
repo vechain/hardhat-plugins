@@ -1,6 +1,6 @@
 {
     "name": "@vechain/hardhat-ethers",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "license": "MIT",
     "description": "Hardhat Vechain Ethers Plugin",
     "repository": "github:vechainfoundation/hardhat-plugins",
@@ -18,13 +18,13 @@
       "ethers": "^5.0.0",
       "hardhat": "^2.12.7",
       "@nomiclabs/hardhat-ethers": "^2.2.2",
-      "@vechain/hardhat-vechain": "^0.0.1"
+      "@vechain/hardhat-vechain": "^0.0.2"
     },
     "peerDependencies": {
       "ethers": "^5.0.0",
       "hardhat": "^2.12.7",
       "@nomiclabs/hardhat-ethers": "^2.2.2",
-      "@vechain/hardhat-vechain": "^0.0.1"
+      "@vechain/hardhat-vechain": "^0.0.2"
     }
   }
   

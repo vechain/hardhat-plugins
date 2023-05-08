@@ -1,6 +1,6 @@
 {
     "name": "@vechain/hardhat-vechain",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Hardhat plugin for a VeChain provider",
     "homepage": "https://github.com/vechainfoundation/hardhat-plugins",
     "repository": "github:vechainfoundation/hardhat-plugins",
