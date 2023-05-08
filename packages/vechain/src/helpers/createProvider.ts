@@ -9,6 +9,10 @@ import { createWallet } from "./createWallet";
 export async function createProvider(networkConfig: NetworkConfig): Promise<Provider> {
     const config = networkConfig as HttpNetworkConfig;
 
+    if (config.restful === undefined) {
+        config.restful = true;
+    }
+
     const net = createNetwork(config);
     const wallet = createWallet(config);
 
@@ -16,6 +20,8 @@ export async function createProvider(networkConfig: NetworkConfig): Promise<Prov
         .connect(net, wallet);
     return new Provider({
         connex: new Framework(driver),
-        wallet
+        wallet,
+        net: config.restful === true ? net : undefined,
+        delegate: config.delegate
     });
 }

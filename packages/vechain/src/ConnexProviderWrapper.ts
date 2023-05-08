@@ -1,3 +1,4 @@
+import debug from "debug";
 import { EventEmitter } from "events";
 import {
     NetworkConfig,
@@ -12,9 +13,13 @@ import { DelegateOpt } from "@vechain/web3-providers-connex/dist/types";
 
 export default class ConnexProviderWrapper extends EventEmitter implements EthereumProvider {
     private _provider: Promise<Provider>;
+    private _verbose: boolean;
+    private _log: debug.Debugger;
 
-    constructor(networkConfig: NetworkConfig) {
+    constructor(networkConfig: NetworkConfig, verbose: boolean) {
         super();
+        this._log = debug("hardhat:vechain:provider");
+        this._verbose = verbose;
         this._provider = createProvider(networkConfig);
         this._provider
             .then(provider => {
@@ -54,6 +59,13 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
     sendAsync(payload: JsonRpcRequest, callback: (error: any, response: JsonRpcResponse) => void): void {
         this._provider
             .then(provider => provider.request(payload))
+            .then(result => {
+                if (this._verbose) {
+                    this._log(`Request:\n${JSON.stringify(payload)}`);
+                    this._log(`Response:\n${JSON.stringify(result)}`);
+                }
+                return result;
+            })
             .then(result => callback(
                 null,
                 {
@@ -62,17 +74,35 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
                     result
                 }
             ))
-            .catch(error => callback(
-                error,
-                {
+            .catch(error => {
+                if (this._verbose) {
+                    console.debug(`Request:\n${JSON.stringify(payload)}`);
+                    console.error(`Error:\n${JSON.stringify(error)}`);
+                }
+                callback(error, {
                     id: payload.id,
                     jsonrpc: '2.0',
                     error
-                }
-            ));
+                })
+            });
     }
 
     async request(args: RequestArguments): Promise<unknown> {
-        return this._provider.then(provider => provider.request(args as any));
+        return this._provider
+            .then(provider => provider.request(args as any))
+            .then(result => {
+                if (this._verbose) {
+                    this._log(`Request:\n${JSON.stringify(args)}`);
+                    this._log(`Response:\n${JSON.stringify(result)}`);
+                }
+                return result;
+            })
+            .catch(error => {
+                if (this._verbose) {
+                    console.debug(`Request:\n${JSON.stringify(args)}`);
+                    console.error(`Error:\n${JSON.stringify(error)}`);
+                }
+                throw error;
+            });
     }
 }
