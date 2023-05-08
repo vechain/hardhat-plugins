@@ -1,3 +1,4 @@
+import debug from "debug";
 import { EventEmitter } from "events";
 import {
     NetworkConfig,
@@ -13,9 +14,11 @@ import { DelegateOpt } from "@vechain/web3-providers-connex/dist/types";
 export default class ConnexProviderWrapper extends EventEmitter implements EthereumProvider {
     private _provider: Promise<Provider>;
     private _verbose: boolean;
+    private _log: debug.Debugger;
 
     constructor(networkConfig: NetworkConfig, verbose: boolean) {
         super();
+        this._log = debug("hardhat:vechain:provider");
         this._verbose = verbose;
         this._provider = createProvider(networkConfig);
         this._provider
@@ -58,8 +61,8 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
             .then(provider => provider.request(payload))
             .then(result => {
                 if (this._verbose) {
-                    console.debug(`Request:\n${payload}`);
-                    console.debug(`Response:\n${result}`);
+                    this._log(`Request:\n${JSON.stringify(payload)}`);
+                    this._log(`Response:\n${JSON.stringify(result)}`);
                 }
                 return result;
             })
@@ -73,8 +76,8 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
             ))
             .catch(error => {
                 if (this._verbose) {
-                    console.debug(`Request:\n${payload}`);
-                    console.error(`Error:\n${error}`);
+                    console.debug(`Request:\n${JSON.stringify(payload)}`);
+                    console.error(`Error:\n${JSON.stringify(error)}`);
                 }
                 callback(error, {
                     id: payload.id,
@@ -89,15 +92,15 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
             .then(provider => provider.request(args as any))
             .then(result => {
                 if (this._verbose) {
-                    console.debug(`Request:\n${args}`);
-                    console.debug(`Response:\n${result}`);
+                    this._log(`Request:\n${JSON.stringify(args)}`);
+                    this._log(`Response:\n${JSON.stringify(result)}`);
                 }
                 return result;
             })
             .catch(error => {
                 if (this._verbose) {
-                    console.debug(`Request:\n${args}`);
-                    console.error(`Error:\n${error}`);
+                    console.debug(`Request:\n${JSON.stringify(args)}`);
+                    console.error(`Error:\n${JSON.stringify(error)}`);
                 }
                 throw error;
             });
