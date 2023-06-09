@@ -25,6 +25,32 @@ module.exports = {
 };
 ```
 
+## Sample `hardhat.config.js` with fee delegation
+
+Fee delegation can be configured by providing optional ```delegate``` config which has required ``url`` and optional ``signer`` field. Url needs to point to delegation a valid
+delegation service, for example ```https://sponsor-testnet.vechain.energy/by/${projectId}```.
+```js
+const {
+  VECHAIN_URL_SOLO
+} = require("@vechain/hardhat-vechain");
+require("@vechain/hardhat-web3");
+
+module.exports = {
+    solidity: {
+        version: "0.8.17",
+    },
+    networks: {
+        vechain: {
+            url: VECHAIN_URL_SOLO,
+            delegate: {
+                url: "${feeDelegationServiceUrl}",
+                signer: "${optionalSigner}"
+            }
+        },
+    }
+};
+```
+
 ## Testing
 - Use Hardhat web3 as usual
 ```js
