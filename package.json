@@ -1,6 +1,6 @@
 {
     "name": "root",
-    "version": "0.0.0",
+    "version": "0.0.3",
     "author": "Electi Consulting LTD",
     "license": "See individual packages",
     "private": true,
@@ -17,9 +17,9 @@
         "web3": "^1.0.0-beta.36",
         "mocha": "^10.2.0",
         "@types/mocha": "^10.0.1",
-        "@vechain/hardhat-vechain": "0.0.1",
-        "@vechain/hardhat-ethers": "0.0.1",
-        "@vechain/hardhat-web3": "0.0.1"
+        "@vechain/hardhat-vechain": "0.0.3",
+        "@vechain/hardhat-ethers": "0.0.3",
+        "@vechain/hardhat-web3": "0.0.3"
     },
     "peerDependencies": {
         "hardhat": "^2.12.7"
