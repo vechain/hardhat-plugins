@@ -53,7 +53,7 @@ module.exports = {
 
 ## Multi network support sample `hardhat.config.js`
 
-Multiple network can also be configured to simplify testing and deployments. Networks which are targeting vechain Thor
+Multiple network can also be configured to simplify testing and deployments. Networks which are targeting ``VechainThor``
 nodes should have ```vechain``` as part of the network name (vechain, vechain_testnet, vechainNode are all valid). Network
 names without this requirement won't be preprocessed by the plugin and it is not expected to function properly with Thor
 network. Sample configuration:
