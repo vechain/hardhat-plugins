@@ -1,5 +1,5 @@
 import { SimpleWallet } from "@vechain/connex-driver";
-import { HttpNetworkConfig } from "hardhat/types";
+import { HttpNetworkAccountsConfig, HttpNetworkConfig, NetworkConfig } from "hardhat/types";
 import { HDNode } from "thor-devkit";
 import { VECHAIN_DEFAULT_MNEMONIC, VECHAIN_URL_SOLO } from "../constants";
 import { VechainHardhatPluginError } from "../error";
@@ -13,11 +13,12 @@ function derivePrivateKeys(mnemonic: string, count: number): Buffer[]  {
     return hdNodes.map(node => node.privateKey!);
 }
 
-export function createWallet(config: HttpNetworkConfig) {
+export function createWallet(networkConfig: NetworkConfig) {
+    const config = networkConfig as HttpNetworkConfig;
     const wallet = new SimpleWallet();
 
     let keys: Buffer[] = [];
-    const accounts = config.accounts;
+    const accounts: HttpNetworkAccountsConfig = config.accounts;
     if (accounts === "remote" && config.url !== VECHAIN_URL_SOLO) {
         throw new VechainHardhatPluginError("Default accounts are only supported on solo instances");
     } else if (accounts === "remote") {

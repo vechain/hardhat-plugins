@@ -10,6 +10,7 @@ declare module "hardhat/types/runtime" {
 declare module "hardhat/types/config" {
     interface HttpNetworkConfig {
         delegate?: DelegateOpt,
-        restful?: boolean
+        restful?: boolean,
+        remoteSigning?: boolean,
     }
 }

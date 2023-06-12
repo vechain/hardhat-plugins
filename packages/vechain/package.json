@@ -1,6 +1,7 @@
 {
     "name": "@vechain/hardhat-vechain",
-    "version": "0.0.2",
+    "version": "0.0.3",
+    "license": "MIT",
     "description": "Hardhat plugin for a VeChain provider",
     "homepage": "https://github.com/vechainfoundation/hardhat-plugins",
     "repository": "github:vechainfoundation/hardhat-plugins",
@@ -17,7 +18,7 @@
     "dependencies": {
         "@vechain/connex-driver": "^2.0.12",
         "@vechain/connex-framework": "^2.0.12",
-        "@vechain/web3-providers-connex": "^1.0.0",
+        "@vechain/web3-providers-connex": "file:../../../../../web3-providers-connex",
         "debug": "^4.3.4",
         "ethers": "^5.7.2",
         "thor-devkit": "^2.0.6"
