@@ -6,7 +6,10 @@ on:
     paths: ['packages/ethers/**', 'packages/vechain/**', 'packages/web3/**', '.github/workflows/**']
     branches:
       - main
-
+  push:
+    paths: ['packages/ethers/**', 'packages/vechain/**', 'packages/web3/**', '.github/workflows/**']
+    branches:
+      - main
 
 jobs:
   run-tests-and-scan:
