@@ -10,9 +10,8 @@ on:
 
 jobs:
   run-tests-and-scan:
-    name: Upload coverage report to Sonar and quality gate check
+    name: Runs tests and upload coverage report to Sonar and quality gate check
     runs-on: ubuntu-latest
-    needs: run-tests-and-build-report
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
