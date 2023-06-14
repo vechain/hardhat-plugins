@@ -1,0 +1,9 @@
+{
+  "bail": true,
+  "exit": true,
+  "colors": true,
+  "node-option": [
+    "experimental-specifier-resolution=node",
+    "loader=ts-node/esm"
+  ]
+}
