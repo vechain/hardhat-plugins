@@ -13,7 +13,7 @@
     ],
     "scripts": {
         "build": "tsc --build",
-        "test": "mocha -- ./test/**/*.spec.ts --recursive --timeout 60000 --exit"
+        "test": "mocha -- ./test/**/*.test.ts --recursive --timeout 60000 --exit"
     },
     "dependencies": {
         "@vechain/connex-driver": "^2.0.12",
