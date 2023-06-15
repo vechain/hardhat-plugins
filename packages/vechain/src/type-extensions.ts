@@ -1,5 +1,5 @@
 import { DelegateOpt } from "@vechain/web3-providers-connex/dist/types";
-import ConnexProviderWrapper from "./ConnexProviderWrapper";
+import { ConnexProviderWrapper } from "./ConnexProviderWrapper";
 
 declare module "hardhat/types/runtime" {
     interface HardhatRuntimeEnvironment {

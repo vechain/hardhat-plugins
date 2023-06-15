@@ -1,7 +1,6 @@
 import { extendEnvironment } from "hardhat/config";
 import { lazyFunction, lazyObject } from "hardhat/plugins";
 import { Web3HTTPProviderAdapter } from "@nomiclabs/hardhat-web3/dist/src/web3-provider-adapter"
-
 import "./type-extensions";
 
 extendEnvironment(hre => {

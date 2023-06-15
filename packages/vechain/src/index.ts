@@ -1,6 +1,6 @@
 import { extendEnvironment } from "hardhat/config";
 import { lazyObject } from "hardhat/plugins";
-import ConnexProviderWrapper from "./ConnexProviderWrapper";
+import { ConnexProviderWrapper } from "./ConnexProviderWrapper";
 
 extendEnvironment(hre => {
     if (hre.network.name !== "vechain") {
@@ -10,4 +10,6 @@ extendEnvironment(hre => {
     hre.network.provider = hre.vechain;
 });
 
+export * from "./ConnexProviderWrapper";
 export * from "./constants";
+export * from "./error";

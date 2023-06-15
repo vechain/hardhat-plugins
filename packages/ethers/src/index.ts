@@ -2,8 +2,8 @@ import { extendEnvironment } from "hardhat/config";
 import { lazyObject } from "hardhat/plugins";
 import type EthersT from "ethers";
 
-import { VechainHardhatPluginError } from "@vechain/hardhat-vechain/dist/error";
-import ConnexProviderWrapper from "@vechain/hardhat-vechain/dist/ConnexProviderWrapper";
+import { VechainHardhatPluginError } from "@vechain/hardhat-vechain";
+import { ConnexProviderWrapper } from "@vechain/hardhat-vechain";
 import "./type-extensions";
 
 import {

@@ -1,5 +1,6 @@
 export const VECHAIN_HARDHAT_PLUGIN_NAME = "vechain";
 
+export const VECHAIN_CHAIN_ID_SOLO = "0xf6";
 export const VECHAIN_URL_SOLO = "http://127.0.0.1:8669";
 export const VECHAIN_DEFAULT_MNEMONIC = "denial kitchen pet squirrel other broom bar gas better priority spoil cross";
 

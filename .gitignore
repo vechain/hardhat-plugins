@@ -1,4 +1,8 @@
 node_modules
-dist
+*.tgz
+*.d.ts.map
+*.d.ts
+*.js.map
+*.js
 
 yarn-error.log
