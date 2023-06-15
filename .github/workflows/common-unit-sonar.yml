@@ -3,11 +3,11 @@ name: Unit Testing & Sonar
 on:
   workflow_dispatch:
   pull_request:
-    paths: ['packages/ethers/**', 'packages/vechain/**', 'packages/web3/**', '.github/workflows/**']
+    paths: ['packages/ethers/**', 'packages/vechain/**', 'packages/web3/**', '.github/workflows/**', 'package.json', 'sonar-project.properties', 'tsconfig.json']
     branches:
       - main
   push:
-    paths: ['packages/ethers/**', 'packages/vechain/**', 'packages/web3/**', '.github/workflows/**']
+    paths: ['packages/ethers/**', 'packages/vechain/**', 'packages/web3/**', '.github/workflows/**', 'package.json', 'sonar-project.properties', 'tsconfig.json']
     branches:
       - main
 
