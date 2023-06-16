@@ -38,9 +38,10 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
 
     public async sign(transaction: Deferrable<TransactionRequest>) {
         let key: Wallet.Key | undefined = undefined;
-        if (this._wallet && transaction.from) {
+        const from = await transaction.from;
+        if (this._wallet && from) {
             const keys = this._wallet.list;
-            const found = keys.find(k => k.address === transaction.from);
+            const found = keys.find(k => k.address === from.toLowerCase());
             if (found) {
                 key = found
             }
