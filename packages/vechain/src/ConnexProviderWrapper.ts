@@ -40,7 +40,7 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
         let key: Wallet.Key | undefined = undefined;
         if (this._wallet && transaction.from) {
             const keys = this._wallet.list;
-            const found = transaction.from ? keys.find(k => k.address === transaction.from) : keys[0];
+            const found = keys.find(k => k.address === transaction.from);
             if (found) {
                 key = found
             }
