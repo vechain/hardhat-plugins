@@ -24,12 +24,20 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
         this._provider
             .then(provider => {
                 provider.emit = this.emit.bind(this);
+            })
+            .catch(error => {
+                this._log(`Error while creating provider: ${error.message}`);
+                throw error;
             });
     }
 
     public setProvider(provider: Promise<Provider>) {
         this._provider.then(provider => {
             provider.emit = provider.emit.bind(provider);
+        })
+        .catch(error => {
+            this._log(`Error while setting provider: ${error.message}`);
+            throw error;
         });
 
         this._provider = provider;
@@ -37,6 +45,10 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
         this._provider
             .then(provider => {
                 provider.emit = this.emit.bind(this);
+            })
+           .catch(error => {
+                this._log(`Error while setting provider: ${error.message}`);
+                throw error;
             });
     }
 
