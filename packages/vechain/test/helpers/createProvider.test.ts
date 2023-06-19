@@ -27,11 +27,11 @@ describe('create providers tests', function () {
     });
     const provider = await createProvider(config);
 
-    assert.notEqual(provider.connex.thor, undefined);
-    assert.notEqual(provider.connex.vendor, undefined);
-    assert.notEqual(provider.wallet, undefined);
+    expect(provider.connex.thor).toBeDefined();
+    expect(provider.connex.vendor).toBeDefined();
+    expect(provider.wallet).toBeDefined();
     assert.equal(provider.chainTag, 0);
-    assert.notEqual(provider.restful, undefined);
+    expect(provider.restful).toBeDefined();
   });
 
   it('create provider test with false restful', async function () {
@@ -44,11 +44,11 @@ describe('create providers tests', function () {
     config['restful'] = false;
     const provider = await createProvider(config);
 
-    assert.notEqual(provider.connex.thor, undefined);
-    assert.notEqual(provider.connex.vendor, undefined);
-    assert.notEqual(provider.wallet, undefined);
+    expect(provider.connex.thor).toBeDefined();
+    expect(provider.connex.vendor).toBeDefined();
+    expect(provider.wallet).toBeDefined();
     assert.equal(provider.chainTag, 0);
-    assert.equal(provider.restful, undefined);
+    expect(provider.restful).toBeUndefined();
   });
 
 });

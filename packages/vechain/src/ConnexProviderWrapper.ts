@@ -26,7 +26,7 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
                 provider.emit = this.emit.bind(this);
             })
             .catch(error => {
-                this._log(`Error while creating provider: ${error.message}`);
+                this._log(`Error while creating provider: ${error.stack}`);
                 throw error;
             });
     }
@@ -36,7 +36,7 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
             provider.emit = provider.emit.bind(provider);
         })
         .catch(error => {
-            this._log(`Error while setting provider: ${error.message}`);
+            this._log(`Error while setting provider: ${error.stack}`);
             throw error;
         });
 
@@ -47,7 +47,7 @@ export default class ConnexProviderWrapper extends EventEmitter implements Ether
                 provider.emit = this.emit.bind(this);
             })
            .catch(error => {
-                this._log(`Error while setting provider: ${error.message}`);
+                this._log(`Error while setting provider: ${error.stack}`);
                 throw error;
             });
     }
