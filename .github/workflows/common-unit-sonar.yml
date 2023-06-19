@@ -33,9 +33,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          rm -rf node_modules
-          rm -rf packages/vechain/node_modules
-          rm -rf yarn.lock
           yarn install
           yarn build
 
