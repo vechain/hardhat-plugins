@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: 18
           cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
           registry-url: 'https://npm.pkg.github.com'
           always-auth: true
           scope: '@vechainfoundation'
