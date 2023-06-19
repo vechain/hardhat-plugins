@@ -1,28 +1,7 @@
-import {HttpNetworkConfig, HttpNetworkHDAccountsConfig} from "hardhat/types";
-import {createWallet} from "../../src/helpers/createWallet";
-import {HDNode} from "thor-devkit";
-const assert = require('chai').assert;
-const expect = require('chai').expect;
-
-const thorSoloUrl = "http://127.0.0.1:8669";
-const invalidUrl = "http://127.0.0.1:8700";
-
-const config = {
-  chainId: 1,
-  from: null,
-  gas: 10000,
-  gasPrice: "auto",
-  gasMultiplier: 1,
-  url: thorSoloUrl,
-  accounts: 'remote',
-  timeout: 1000,
-  httpHeaders: { name: []}
-} as unknown as HttpNetworkConfig;
-
-const defaultMnemonic = 'denial kitchen pet squirrel other broom bar gas better priority spoil cross';
-const defaultAddress = '0xf077b491b355e64048ce21e3a6fc4751eeea77fa';
-const testMnemonic = "yard echo inherit first merit brisk amused cave vacuum hurdle cube mean";
-const testAddress = '0x97dcbb3badeea5a2da768ac3ce33f5c9ce098c9d';
+import { HttpNetworkConfig, HttpNetworkHDAccountsConfig } from "hardhat/types";
+import { createWallet } from "../../src/helpers/createWallet";
+import { HDNode } from "thor-devkit";
+import * as assert from "assert";
 
 function derivePrivateKeys(mnemonic: string, count: number): Buffer[]  {
   const hdNode = HDNode.fromMnemonic(mnemonic.split(' '));
@@ -34,6 +13,27 @@ function derivePrivateKeys(mnemonic: string, count: number): Buffer[]  {
 }
 
 describe('create wallet tests', function () {
+  const thorSoloUrl = "http://127.0.0.1:8669";
+  const invalidUrl = "http://127.0.0.1:8700";
+
+  const config = {
+    chainId: 1,
+    from: null,
+    gas: 10000,
+    gasPrice: "auto",
+    gasMultiplier: 1,
+    url: thorSoloUrl,
+    accounts: 'remote',
+    timeout: 1000,
+    httpHeaders: { name: []}
+  } as unknown as HttpNetworkConfig;
+
+  const defaultMnemonic = 'denial kitchen pet squirrel other broom bar gas better priority spoil cross';
+  const defaultAddress = '0xf077b491b355e64048ce21e3a6fc4751eeea77fa';
+  const testMnemonic = "yard echo inherit first merit brisk amused cave vacuum hurdle cube mean";
+  const testAddress = '0x97dcbb3badeea5a2da768ac3ce33f5c9ce098c9d';
+
+
   it('create wallet with default mnemonic',function () {
     const wallet = createWallet(config);
     assert.equal(wallet.list.length, 10);
@@ -62,7 +62,7 @@ describe('create wallet tests', function () {
     config.url = invalidUrl;
     expect(function(){
       createWallet(config);
-    }).to.throw('Default accounts are only supported on solo instances');
+    }).toThrow('Default accounts are only supported on solo instances');
   });
 
   it('create wallet with account array',function () {
