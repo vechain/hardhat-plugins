@@ -34,7 +34,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          rm -rf node_modules
           yarn install
           yarn build
 
