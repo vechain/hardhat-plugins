@@ -33,6 +33,10 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
         this._provider
             .then(provider => {
                 provider.emit = this.emit.bind(this);
+            })
+            .catch(error => {
+                this._log(`Error while creating provider: ${error.stack}`);
+                throw error;
             });
     }
 
@@ -90,6 +94,10 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
     public setProvider(provider: Promise<Provider>) {
         this._provider.then(provider => {
             provider.emit = provider.emit.bind(provider);
+        })
+        .catch(error => {
+            this._log(`Error while setting provider: ${error.stack}`);
+            throw error;
         });
 
         this._provider = provider;
@@ -97,6 +105,10 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
         this._provider
             .then(provider => {
                 provider.emit = this.emit.bind(this);
+            })
+           .catch(error => {
+                this._log(`Error while setting provider: ${error.stack}`);
+                throw error;
             });
     }
 
