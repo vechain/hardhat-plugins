@@ -5,4 +5,6 @@ node_modules
 *.js.map
 *.js
 
+coverage
+
 yarn-error.log
