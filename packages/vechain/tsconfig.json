@@ -2,7 +2,7 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "./dist",
-        "rootDir": "./src"
+        "rootDir": "./src",
     },
-    "exclude": ["./test/**", "./dist/**"]
+    "exclude": ["./test/**", "./dist/**", "jest.config.ts"]
 }
