@@ -15,6 +15,7 @@
         "ethers"
     ],
     "main": "src/index.js",
+    "typings": "./src/index.d.ts",
     "files": [
         "src/**/*.js",
         "src/**/*.d.ts"
