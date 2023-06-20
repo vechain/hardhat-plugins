@@ -1,8 +1,9 @@
 import {HttpNetworkConfig, JsonRpcResponse} from "hardhat/types";
-import ConnexProviderWrapper from "../src/ConnexProviderWrapper";
+import { ConnexProviderWrapper } from "../src/ConnexProviderWrapper";
 import { Driver } from "@vechain/connex-driver";
 import * as assert from "assert";
 import {createProvider} from "../src/helpers/createProvider";
+import { createWallet } from "../src/helpers/createWallet";
 
 describe('index tests', () => {
   const thorSoloUrl = "http://127.0.0.1:8669";
@@ -62,14 +63,16 @@ describe('index tests', () => {
       }
     });
     const connexProviderWrapper = new ConnexProviderWrapper(config, true);
-    const provider = createProvider(config);
+    const wallet = createWallet(config);
+    const provider = createProvider(config, wallet);
     expect(connexProviderWrapper.setProvider(provider)).toBe(void 0);
   });
 
   it('create ConnexProviderWrapper and set provider error', async () => {
 
     const connexProviderWrapper = new ConnexProviderWrapper(config, true);
-    const provider = createProvider(config);
+    const wallet = createWallet(config);
+    const provider = createProvider(config, wallet);
     try {
       connexProviderWrapper.setProvider(provider);
     } catch (e: any) {
@@ -85,7 +88,8 @@ describe('index tests', () => {
       }
     });
     const connexProviderWrapper = new ConnexProviderWrapper(config, true);
-    const provider = createProvider(config);
+    const wallet = createWallet(config);
+    const provider = createProvider(config, wallet);
     connexProviderWrapper.setProvider(provider);
     await connexProviderWrapper.delegate({ url: 'https://test.delegate.url/test'});
     provider.then(resolved => {
@@ -102,7 +106,8 @@ describe('index tests', () => {
       }
     });
     const connexProviderWrapper = new ConnexProviderWrapper(config, true);
-    const provider = createProvider(config);
+    const wallet = createWallet(config);
+    const provider = createProvider(config, wallet);
     connexProviderWrapper.setProvider(provider);
     provider.then(resolved => {
         jest.spyOn(resolved, 'request').mockResolvedValue(dummyResponse);
@@ -135,7 +140,8 @@ describe('index tests', () => {
       }
     });
     const connexProviderWrapper = new ConnexProviderWrapper(config, true);
-    const provider = createProvider(config);
+    const wallet = createWallet(config);
+    const provider = createProvider(config, wallet);
     connexProviderWrapper.setProvider(provider);
     provider.then(resolved => {
         jest.spyOn(resolved, 'request').mockResolvedValue(dummyResponse);
@@ -166,7 +172,8 @@ describe('index tests', () => {
       }
     });
     const connexProviderWrapper = new ConnexProviderWrapper(config, true);
-    const provider = createProvider(config);
+    const wallet = createWallet(config);
+    const provider = createProvider(config, wallet);
     connexProviderWrapper.setProvider(provider);
     provider.then(resolved => {
         jest.spyOn(resolved, 'request').mockImplementation(() => {
