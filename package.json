@@ -9,8 +9,7 @@
     ],
     "scripts": {
         "clean": "git clean -dfX",
-        "pack-all": "yarn pack --cwd packages/vechain && yarn pack --cwd packages/web3 && yarn pack --cwd packages/ethers",
-        "build": "tsc --build packages/vechain packages/ethers packages/web3"
+        "pack-all": "yarn pack --cwd packages/vechain && yarn pack --cwd packages/web3 && yarn pack --cwd packages/ethers"
     },
     "devDependencies": {
         "typescript": "^5.1.3",
