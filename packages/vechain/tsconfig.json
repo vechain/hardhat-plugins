@@ -4,5 +4,5 @@
         "outDir": ".",
         "rootDir": "."
     },
-    "exclude": ["jest.config.ts"]
+    "exclude": ["jest.config.ts", "test"]
 }
