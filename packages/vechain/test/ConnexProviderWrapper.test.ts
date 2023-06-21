@@ -8,7 +8,10 @@ import { createWallet } from "../src/helpers/createWallet";
 describe('index tests', () => {
   const thorSoloUrl = "http://127.0.0.1:8669";
   const testDelegateUrl = 'https://test.delegate.url/test';
-  const dummyResponse = { response: 'ok' };
+  const dummyResponse = {
+    response: 'ok',
+    hash: '0x000015ce4dd3541ea6cd3bf6d328604d8e4d17747196f4c45e40d6b56d9ac5f2'
+  };
   const genericError = 'Generic error!';
 
   const config = {
@@ -195,5 +198,73 @@ describe('index tests', () => {
       assert.equal(error.message, genericError);
     });
   });
+
+
+  it('create ConnexProviderWrapper, sign transaction', async () => {
+
+    Driver.connect = jest.fn().mockReturnValue({
+      genesis: {
+        id: ''
+      }
+    });
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const wallet = createWallet(config);
+    const provider = createProvider(config, wallet);
+    connexProviderWrapper.setProvider(provider);
+    provider.then(resolved => {
+        jest.spyOn(resolved, 'request').mockImplementation(() => {
+          throw new Error(genericError);
+        })
+      }
+    );
+    const request = {
+      jsonrpc: '2.0',
+      method: 'testMethod',
+      params: ['1'],
+      id: 1
+    };
+
+    await connexProviderWrapper.sendAsync(request, (error: any, response: JsonRpcResponse) => {
+      assert.equal(response.id, request.id);
+      assert.equal(response.jsonrpc, request.jsonrpc);
+      assert.equal(response.error, error);
+      assert.equal(error.message, genericError);
+    });
+  });
+
+  describe('signing', () => {
+    beforeEach(() => {
+      Driver.connect = jest.fn().mockReturnValue({
+        genesis: {
+          id: ''
+        }
+      });
+    });
+
+    it("fails with key not included in provider", async () => {
+      const tx = { from: "" }
+      const connexProviderWrapper = new ConnexProviderWrapper(config, false)
+      expect(connexProviderWrapper.sign(tx)).rejects.toThrow('transaction.from: "" is not included in wallet');
+    });
+
+    it("signs with a fixed nonce", async () => {
+      const wallet = createWallet(config);
+      const provider = createProvider(config, wallet);
+      provider.then(resolved => {
+        jest.spyOn(resolved, 'request').mockResolvedValue(dummyResponse);
+      });
+
+      const connexProviderWrapper = new ConnexProviderWrapper(config, false);
+      connexProviderWrapper.setProvider(provider);
+
+      const tx = {
+        from: wallet.list[0].address,
+        to: wallet.list[1].address,
+        nonce: "0x5aef3356a62552bc",
+        gasLimit: "0x5208"
+      };
+      expect(await connexProviderWrapper.sign(tx)).toMatch(/0x([0-9]|[a-f]|[A-F])+/);
+    });
+  })
 
 });

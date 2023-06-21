@@ -51,7 +51,7 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
             }
         }
         if (key === undefined) {
-            throw new VechainHardhatPluginError(`transaction.from: ${transaction.from} is not included in wallet`);
+            throw new VechainHardhatPluginError(`transaction.from: "${transaction.from}" is not included in wallet`);
         }
 
         const clauses: [Transaction.Clause] = [{
