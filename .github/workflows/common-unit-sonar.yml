@@ -32,9 +32,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        run: |
-          yarn install
-          yarn build
+        run: yarn install
 
       - name: Unit tests and coverage
         run: yarn workspace @vechain/hardhat-vechain test-coverage
