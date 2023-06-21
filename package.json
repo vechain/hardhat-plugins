@@ -9,6 +9,7 @@
     ],
     "scripts": {
         "clean": "git clean -dfX",
+        "build": "#skipping sonar build step",
         "pack-all": "yarn pack --cwd packages/vechain && yarn pack --cwd packages/web3 && yarn pack --cwd packages/ethers"
     },
     "devDependencies": {
