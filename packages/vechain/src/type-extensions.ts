@@ -1,5 +1,5 @@
 import { DelegateOpt } from "@vechain/web3-providers-connex/dist/types";
-import ConnexProviderWrapper from "./ConnexProviderWrapper";
+import { ConnexProviderWrapper } from "./ConnexProviderWrapper";
 
 declare module "hardhat/types/runtime" {
     interface HardhatRuntimeEnvironment {
@@ -10,6 +10,7 @@ declare module "hardhat/types/runtime" {
 declare module "hardhat/types/config" {
     interface HttpNetworkConfig {
         delegate?: DelegateOpt,
-        restful?: boolean
+        restful?: boolean,
+        remoteSigning?: boolean,
     }
 }

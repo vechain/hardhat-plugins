@@ -1,12 +1,12 @@
 import { extendEnvironment } from "hardhat/config";
 import { lazyFunction, lazyObject } from "hardhat/plugins";
 import { Web3HTTPProviderAdapter } from "@nomiclabs/hardhat-web3/dist/src/web3-provider-adapter"
-
+import { VechainHardhatPluginError } from "@vechain/hardhat-vechain";
 import "./type-extensions";
 
 extendEnvironment(hre => {
     if (hre.vechain === undefined) {
-        return;
+        throw new VechainHardhatPluginError("vechain-web3 plugin requires hardhat-vechain");
     }
     hre.Web3 = lazyFunction(() => require("web3"));
     hre.web3 = lazyObject(() => {

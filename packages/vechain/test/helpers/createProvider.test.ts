@@ -2,6 +2,7 @@ import {createProvider} from "../../src/helpers/createProvider";
 import {HttpNetworkConfig} from "hardhat/types";
 import {Driver} from "@vechain/connex-driver";
 import * as assert from "assert";
+import { createWallet } from "../../src/helpers/createWallet";
 
 describe('create providers tests', function () {
   const thorSoloUrl = "http://127.0.0.1:8669";
@@ -25,7 +26,8 @@ describe('create providers tests', function () {
         id: ''
       }
     });
-    const provider = await createProvider(config);
+    const wallet = createWallet(config);
+    const provider = await createProvider(config, wallet);
 
     expect(provider.connex.thor).toBeDefined();
     expect(provider.connex.vendor).toBeDefined();
@@ -42,7 +44,8 @@ describe('create providers tests', function () {
       }
     });
     config['restful'] = false;
-    const provider = await createProvider(config);
+    const wallet = createWallet(config);
+    const provider = await createProvider(config, wallet);
 
     expect(provider.connex.thor).toBeDefined();
     expect(provider.connex.vendor).toBeDefined();

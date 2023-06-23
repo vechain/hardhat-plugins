@@ -1,19 +1,29 @@
 {
     "name": "@vechain/hardhat-vechain",
-    "version": "0.0.3",
+    "version": "0.1.0",
+    "license": "MIT",
     "description": "Hardhat plugin for a VeChain provider",
     "homepage": "https://github.com/vechainfoundation/hardhat-plugins",
     "repository": "github:vechainfoundation/hardhat-plugins",
     "author": "Electi Consulting LTD",
-    "main": "dist/index.js",
-    "typings": "./dist/index.d.ts",
+    "keywords": [
+        "thor",
+        "vechain",
+        "ethereum",
+        "smart-contracts",
+        "hardhat",
+        "hardhat-plugin"
+    ],
+    "main": "src/index.js",
+    "typings": "./src/index.d.ts",
     "files": [
-        "dist",
-        "LICENSE",
-        "README.md"
+        "src/**/*.js",
+        "src/**/*.d.ts"
     ],
     "scripts": {
         "build": "tsc --build",
+        "prepack": "yarn build",
+        "clean": "git clean -dfX",
         "test": "cross-env TESTING=1 yarn node --experimental-vm-modules --no-warnings $(yarn bin jest) --runInBand --forceExit",
         "test-coverage": "cross-env TESTING=1 yarn node --experimental-vm-modules --no-warnings $(yarn bin jest) --runInBand --detectOpenHandles --coverage"
     },

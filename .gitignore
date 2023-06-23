@@ -1,4 +1,10 @@
 node_modules
-dist
+*.tgz
+*.d.ts.map
+*.d.ts
+*.js.map
+*.js
+
+coverage
 
 yarn-error.log

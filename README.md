@@ -1,6 +1,12 @@
 # Hardhat Plugins for Vechain
 This is a mono-repo containing plugins that extend the hardhat environment with a [Connex provider](https://github.com/vechain/web3-providers-connex).
 
+# Build all Packages
+```bash
+yarn install
+yarn build
+```
+
 ## Packages
 | package | status | desc |
 | - | - | - |

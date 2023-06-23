@@ -2,7 +2,8 @@ import { extendEnvironment } from "hardhat/config";
 import { lazyObject } from "hardhat/plugins";
 import type EthersT from "ethers";
 
-import { VechainHardhatPluginError } from "@vechain/hardhat-vechain/dist/error";
+import { VechainHardhatPluginError } from "@vechain/hardhat-vechain";
+import { ConnexProviderWrapper } from "@vechain/hardhat-vechain";
 import "./type-extensions";
 
 import {
@@ -27,20 +28,35 @@ const registerCustomInspection = (BigNumber: any) => {
     };
 };
 
+const modified = (provider: ConnexProviderWrapper) => {
+    let modifiedProvider =  modifyProvider(new EthersProviderWrapper(provider as any));
+
+    let getDefaultSigner = modifiedProvider.getSigner.bind(modifiedProvider);
+    modifiedProvider.getSigner = (addressOrIndex) => {
+        let defaultSigner = getDefaultSigner(addressOrIndex);
+        defaultSigner.signTransaction = async (transaction) => {
+            return provider.sign(transaction)
+        }
+        return defaultSigner;
+    }
+
+    return modifiedProvider
+}
+
 extendEnvironment(hre => {
     if (hre.vechain === undefined) {
-        if (hre.network.name === "vechain") {
-            throw new VechainHardhatPluginError("Ethers plugin requires hardhat-vechain");
-        } else {
-            return;
-        }
+        throw new VechainHardhatPluginError("vechain-ethers plugin requires hardhat-vechain");
     }
     hre.ethers = lazyObject(() => {
+        if (hre.vechain === undefined) {
+            throw new VechainHardhatPluginError("@vechain/hardhat-ethers expects @vechain/hardhat-vechain");
+        }
+
         const { ethers } = require("ethers") as typeof EthersT;
         registerCustomInspection(ethers.BigNumber);
 
         const provider = hre.vechain!;
-        const jsonRpcProvider = modifyProvider(new EthersProviderWrapper(provider as any));
+        const jsonRpcProvider = modified(provider);
         const { proxy } = createUpdatableTargetProxy(jsonRpcProvider);
 
         return {
