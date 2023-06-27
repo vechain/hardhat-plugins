@@ -1,6 +1,6 @@
 {
     "name": "@vechain/hardhat-vechain",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "MIT",
     "description": "Hardhat plugin for a VeChain provider",
     "homepage": "https://github.com/vechainfoundation/hardhat-plugins",
@@ -14,11 +14,11 @@
         "hardhat",
         "hardhat-plugin"
     ],
-    "main": "src/index.js",
-    "typings": "./src/index.d.ts",
+    "main": "dist/index.js",
     "files": [
-        "src/**/*.js",
-        "src/**/*.d.ts"
+        "dist",
+        "LICENSE",
+        "README.md"
     ],
     "scripts": {
         "build": "tsc --build",

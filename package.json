@@ -19,9 +19,10 @@
         "web3": "^1.0.0-beta.36",
         "@nomiclabs/hardhat-web3": "^2.0.0",
         "@nomiclabs/hardhat-ethers": "^2.2.2",
-        "@vechain/hardhat-vechain": "0.1.0",
-        "@vechain/hardhat-ethers": "0.1.0",
-        "@vechain/hardhat-web3": "0.1.0",
+        "@types/debug": "^4.1.8",
+        "@vechain/hardhat-vechain": "^0.1.1",
+        "@vechain/hardhat-ethers": "^0.1.1",
+        "@vechain/hardhat-web3": "^0.1.1",
         "@types/jest": "^29.5.2",
         "ts-jest": "^29.1.0",
         "jest": "^29.5.0"
