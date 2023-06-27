@@ -5,7 +5,7 @@ import { VechainHardhatPluginError } from "@vechain/hardhat-vechain";
 import "./type-extensions";
 
 extendEnvironment(hre => {
-    if (hre.vechain === undefined) {
+    if (!hre.network.name.includes("vechain")) {
         throw new VechainHardhatPluginError("vechain-web3 plugin requires hardhat-vechain");
     }
     hre.Web3 = lazyFunction(() => require("web3"));

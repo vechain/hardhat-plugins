@@ -1,10 +1,11 @@
 {
     "name": "@vechain/hardhat-ethers",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "MIT",
     "description": "Hardhat Vechain Ethers Plugin",
     "repository": "github:vechainfoundation/hardhat-plugins",
     "author": "Electi Consulting LTD",
+    "main": "dist/index.js",
     "keywords": [
         "thor",
         "vechain",
@@ -14,11 +15,10 @@
         "hardhat-plugin",
         "ethers"
     ],
-    "main": "src/index.js",
-    "typings": "./src/index.d.ts",
     "files": [
-        "src/**/*.js",
-        "src/**/*.d.ts"
+      "dist",
+      "LICENSE",
+      "README.md"
     ],
     "scripts": {
         "prepack": "yarn build",
@@ -29,12 +29,12 @@
       "ethers": "^5.0.0",
       "hardhat": "^2.12.7",
       "@nomiclabs/hardhat-ethers": "^2.2.2",
-      "@vechain/hardhat-vechain": "^0.1.0"
+      "@vechain/hardhat-vechain": "^0.1.1"
     },
     "peerDependencies": {
       "ethers": "^5.0.0",
       "hardhat": "^2.12.7",
       "@nomiclabs/hardhat-ethers": "^2.2.2",
-      "@vechain/hardhat-vechain": "^0.1.0"
+      "@vechain/hardhat-vechain": "^0.1.1"
     }
 }

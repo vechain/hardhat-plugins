@@ -44,11 +44,11 @@ const modified = (provider: ConnexProviderWrapper) => {
 }
 
 extendEnvironment(hre => {
-    if (hre.vechain === undefined) {
+    if (!hre.network.name.includes("vechain")) {
         throw new VechainHardhatPluginError("vechain-ethers plugin requires hardhat-vechain");
     }
     hre.ethers = lazyObject(() => {
-        if (hre.vechain === undefined) {
+        if (!hre.network.name.includes("vechain")) {
             throw new VechainHardhatPluginError("@vechain/hardhat-ethers expects @vechain/hardhat-vechain");
         }
 
