@@ -1,6 +1,6 @@
 {
     "name": "@vechain/hardhat-web3",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "license": "MIT",
     "description": "Hardhat Vechain Web3 Plugin",
     "repository": "github:vechainfoundation/hardhat-plugins",
@@ -29,12 +29,12 @@
         "web3": "^1.0.0-beta.36",
         "hardhat": "^2.12.7",
         "@nomiclabs/hardhat-web3": "^2.0.0",
-        "@vechain/hardhat-vechain": "^0.1.1"
+        "@vechain/hardhat-vechain": "^0.1.2"
     },
     "peerDependencies": {
         "web3": "^1.0.0-beta.36",
         "hardhat": "^2.12.7",
         "@nomiclabs/hardhat-web3": "^2.0.0",
-        "@vechain/hardhat-vechain": "^0.1.1"
+        "@vechain/hardhat-vechain": "^0.1.2"
     }
 }
