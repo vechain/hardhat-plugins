@@ -46,7 +46,7 @@ const modified = (provider: ConnexProviderWrapper) => {
 extendEnvironment(hre => {
     if (hre.vechain === undefined) {
         if (hre.network.name.includes("vechain")) {
-            throw new VechainHardhatPluginError("Ethers plugin requires hardhat-vechain");
+            throw new VechainHardhatPluginError("vechain-ethers plugin requires hardhat-vechain");
         } else {
             return;
         }
