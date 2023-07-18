@@ -17,6 +17,7 @@ import { randomBytes } from "crypto";
 import { TransactionRequest } from "@ethersproject/abstract-provider"
 import { VechainHardhatPluginError } from "./error";
 import { Transaction } from "thor-devkit";
+import { Network } from "@ethersproject/networks";
 
 export class ConnexProviderWrapper extends EventEmitter implements EthereumProvider {
     private _provider: Promise<Provider>;
@@ -24,8 +25,13 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
     private _verbose: boolean;
     private _log: debug.Debugger;
 
-    constructor(networkConfig: NetworkConfig, verbose: boolean) {
+    private readonly _networkConfig: NetworkConfig;
+    private readonly _networkName: string;
+
+    constructor(networkConfig: NetworkConfig, verbose: boolean, networkName: string) {
         super();
+        this._networkConfig = networkConfig;
+        this._networkName = networkName;
         this._log = debug("hardhat:vechain:provider");
         this._verbose = verbose;
         this._wallet = createWallet(networkConfig);
@@ -40,8 +46,18 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
             });
     }
 
+    public async getVechainNetwork(): Promise<Network> {
+        const provider = await this._provider;
+        return {
+            name: this._networkName,
+            chainId: this._networkConfig.chainId!!,
+            _defaultProvider: (providers: any, options?: any) => provider
+        }
+    }
+
     public async sign(transaction: Deferrable<TransactionRequest>) {
         let key: Wallet.Key | undefined = undefined;
+        console.log(`This is the tx ${JSON.stringify(transaction)}`);
         const from = await transaction.from;
         if (this._wallet && from) {
             const keys = this._wallet.list;

@@ -6,7 +6,7 @@ extendEnvironment(hre => {
     if (!hre.network.name.includes("vechain")) {
         return;
     }
-    hre.vechain = lazyObject(() => new ConnexProviderWrapper(hre.network.config, hre.hardhatArguments.verbose));
+    hre.vechain = lazyObject(() => new ConnexProviderWrapper(hre.network.config, hre.hardhatArguments.verbose, hre.network.name));
     hre.network.provider = hre.vechain;
 });
 

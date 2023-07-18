@@ -39,8 +39,11 @@ const modified = (provider: ConnexProviderWrapper) => {
         }
         return defaultSigner;
     }
+    modifiedProvider.getNetwork = () => {
+        return provider.getVechainNetwork();
+    }
 
-    return modifiedProvider
+    return modifiedProvider;
 }
 
 extendEnvironment(hre => {
