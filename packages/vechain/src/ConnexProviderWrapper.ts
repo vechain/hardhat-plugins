@@ -57,7 +57,6 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
 
     public async sign(transaction: Deferrable<TransactionRequest>) {
         let key: Wallet.Key | undefined = undefined;
-        console.log(`This is the tx ${JSON.stringify(transaction)}`);
         const from = await transaction.from;
         if (this._wallet && from) {
             const keys = this._wallet.list;

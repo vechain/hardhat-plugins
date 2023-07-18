@@ -1,5 +1,6 @@
 import {BaseContract} from "ethers";
 import {VechainHardhatPluginError} from "./error";
+import logger from 'pino';
 
 export interface Clause {
   args: any[],
@@ -11,6 +12,12 @@ export class ClausesBuilder {
   private readonly clauses: Clause[] = [];
   private readonly contract: BaseContract;
 
+  private log = logger({
+    transport: {
+      target: 'pino-pretty'
+    }
+  });
+
   constructor(contract: BaseContract) {
     this.contract = contract;
   }
@@ -21,13 +28,18 @@ export class ClausesBuilder {
   }
 
 
-  public async send(): Promise<any> {
+  public async send(): Promise<{
+    txid: string
+    signer: string
+  }> {
     const net = await this.contract.provider.getNetwork();
     if (!net || !net['_defaultProvider']) {
+      this.log.error('Error while getting default provider for network');
       throw new VechainHardhatPluginError('vechain hardhat plugin requires vechain network for clauses operation')
     }
     const provider = net._defaultProvider(null, null);
     if (!provider) {
+      this.log.error('Error while getting default provider for network');
       throw new VechainHardhatPluginError('vechain hardhat plugin requires vechain provider for clauses operation')
     }
     const processedClauses = this.clauses.map(clause => {
