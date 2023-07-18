@@ -25,7 +25,7 @@
         "prepack": "yarn build",
         "clean": "git clean -dfX",
         "test": "cross-env TESTING=1 yarn node --experimental-vm-modules --no-warnings $(yarn bin jest) --runInBand --forceExit",
-        "test-coverage": "cross-env TESTING=1 yarn node --experimental-vm-modules --no-warnings $(yarn bin jest) --runInBand --detectOpenHandles --coverage"
+        "test-coverage": "cross-env TESTING=1 yarn node --experimental-vm-modules --no-warnings $(yarn bin jest) --runInBand --forceExit --coverage"
     },
     "dependencies": {
         "@vechain/connex-driver": "^2.0.12",
