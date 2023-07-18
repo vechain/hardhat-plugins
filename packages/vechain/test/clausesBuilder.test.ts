@@ -1,7 +1,7 @@
 import {HttpNetworkConfig, JsonRpcResponse} from "hardhat/types";
 import { createProvider } from "../src/helpers/createProvider";
 import { createWallet } from "../src/helpers/createWallet";
-import {ClausesBuilder} from "../dist/clausesBuilder";
+import {ClausesBuilder} from "../src/clausesBuilder";
 import {BaseContract} from "ethers";
 
 describe('builder tests', () => {

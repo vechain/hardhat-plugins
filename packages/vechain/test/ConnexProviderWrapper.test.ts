@@ -3,7 +3,7 @@ import { Driver } from "@vechain/connex-driver";
 import * as assert from "assert";
 import { createProvider } from "../src/helpers/createProvider";
 import { createWallet } from "../src/helpers/createWallet";
-import {ConnexProviderWrapper} from "../dist/ConnexProviderWrapper";
+import { ConnexProviderWrapper } from "../dist/ConnexProviderWrapper";
 
 describe('index tests', () => {
   const thorSoloUrl = "http://127.0.0.1:8669";
