@@ -1,9 +1,9 @@
 import {HttpNetworkConfig, JsonRpcResponse} from "hardhat/types";
-import { ConnexProviderWrapper } from "../src/ConnexProviderWrapper";
 import { Driver } from "@vechain/connex-driver";
 import * as assert from "assert";
-import {createProvider} from "../src/helpers/createProvider";
+import { createProvider } from "../src/helpers/createProvider";
 import { createWallet } from "../src/helpers/createWallet";
+import {ConnexProviderWrapper} from "../dist/ConnexProviderWrapper";
 
 describe('index tests', () => {
   const thorSoloUrl = "http://127.0.0.1:8669";
@@ -264,6 +264,22 @@ describe('index tests', () => {
         gasLimit: "0x5208"
       };
       expect(await connexProviderWrapper.sign(tx)).toMatch(/0x([0-9]|[a-f]|[A-F])+/);
+    });
+
+    it("get vechain network", async () => {
+      const wallet = createWallet(config);
+      const provider = createProvider(config, wallet);
+      provider.then(resolved => {
+        jest.spyOn(resolved, 'request').mockResolvedValue(dummyResponse);
+      });
+
+      const connexProviderWrapper = new ConnexProviderWrapper(config, false, 'vechain');
+      connexProviderWrapper.setProvider(provider);
+
+      const network = await connexProviderWrapper.getVechainNetwork()
+
+      expect(network.name).toEqual('vechain');
+      expect(network.chainId).toEqual(1);
     });
   })
 
