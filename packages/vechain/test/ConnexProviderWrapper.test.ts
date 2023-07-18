@@ -33,7 +33,7 @@ describe('index tests', () => {
         id: ''
       }
     });
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     expect(connexProviderWrapper).toBeDefined();
   });
 
@@ -44,13 +44,13 @@ describe('index tests', () => {
         id: ''
       }
     });
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     expect(await connexProviderWrapper.disableDelegate()).toBeNull()
   });
 
   it('create ConnexProviderWrapper and expect connection error', async () => {
 
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     try {
       await connexProviderWrapper.disableDelegate();
     } catch (e: any) {
@@ -65,7 +65,7 @@ describe('index tests', () => {
         id: ''
       }
     });
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     const wallet = createWallet(config);
     const provider = createProvider(config, wallet);
     expect(connexProviderWrapper.setProvider(provider)).toBe(void 0);
@@ -73,7 +73,7 @@ describe('index tests', () => {
 
   it('create ConnexProviderWrapper and set provider error', async () => {
 
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     const wallet = createWallet(config);
     const provider = createProvider(config, wallet);
     try {
@@ -90,7 +90,7 @@ describe('index tests', () => {
         id: ''
       }
     });
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     const wallet = createWallet(config);
     const provider = createProvider(config, wallet);
     connexProviderWrapper.setProvider(provider);
@@ -108,7 +108,7 @@ describe('index tests', () => {
         id: ''
       }
     });
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     const wallet = createWallet(config);
     const provider = createProvider(config, wallet);
     connexProviderWrapper.setProvider(provider);
@@ -127,7 +127,7 @@ describe('index tests', () => {
         id: ''
       }
     });
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     try {
       await connexProviderWrapper.send('testMethod', ['1']);
     } catch (e: any) {
@@ -142,7 +142,7 @@ describe('index tests', () => {
         id: ''
       }
     });
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     const wallet = createWallet(config);
     const provider = createProvider(config, wallet);
     connexProviderWrapper.setProvider(provider);
@@ -174,7 +174,7 @@ describe('index tests', () => {
         id: ''
       }
     });
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     const wallet = createWallet(config);
     const provider = createProvider(config, wallet);
     connexProviderWrapper.setProvider(provider);
@@ -207,7 +207,7 @@ describe('index tests', () => {
         id: ''
       }
     });
-    const connexProviderWrapper = new ConnexProviderWrapper(config, true);
+    const connexProviderWrapper = new ConnexProviderWrapper(config, true, 'vechain');
     const wallet = createWallet(config);
     const provider = createProvider(config, wallet);
     connexProviderWrapper.setProvider(provider);
@@ -243,7 +243,7 @@ describe('index tests', () => {
 
     it("fails with key not included in provider", async () => {
       const tx = { from: "" }
-      const connexProviderWrapper = new ConnexProviderWrapper(config, false)
+      const connexProviderWrapper = new ConnexProviderWrapper(config, false, 'vechain')
       expect(connexProviderWrapper.sign(tx)).rejects.toThrow('transaction.from: "" is not included in wallet');
     });
 
@@ -254,7 +254,7 @@ describe('index tests', () => {
         jest.spyOn(resolved, 'request').mockResolvedValue(dummyResponse);
       });
 
-      const connexProviderWrapper = new ConnexProviderWrapper(config, false);
+      const connexProviderWrapper = new ConnexProviderWrapper(config, false, 'vechain');
       connexProviderWrapper.setProvider(provider);
 
       const tx = {
