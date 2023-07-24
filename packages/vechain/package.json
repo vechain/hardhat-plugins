@@ -25,7 +25,7 @@
         "prepack": "yarn build",
         "clean": "git clean -dfX",
         "test": "cross-env TESTING=1 yarn node --experimental-vm-modules --no-warnings $(yarn bin jest) --runInBand --forceExit",
-        "test-coverage": "cross-env TESTING=1 yarn node --experimental-vm-modules --no-warnings $(yarn bin jest) --runInBand --detectOpenHandles --coverage"
+        "test-coverage": "cross-env TESTING=1 yarn node --experimental-vm-modules --no-warnings $(yarn bin jest) --runInBand --forceExit --coverage"
     },
     "dependencies": {
         "@vechain/connex-driver": "^2.0.12",
@@ -33,7 +33,9 @@
         "@vechain/web3-providers-connex": "^1.0.0",
         "debug": "^4.3.4",
         "ethers": "^5.7.2",
-        "thor-devkit": "^2.0.6"
+        "thor-devkit": "^2.0.6",
+        "pino": "8.14.1",
+        "pino-pretty": "9.4.0"
     },
     "devDependencies": {
         "@types/debug": "^4.1.7",

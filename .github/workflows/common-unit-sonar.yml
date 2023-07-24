@@ -32,10 +32,14 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        run: yarn install
+        run: |
+            yarn install
+            yarn build
 
       - name: Unit tests and coverage
-        run: yarn workspace @vechain/hardhat-vechain test-coverage
+        run: |
+            docker-compose -f packages/vechain/test/docker-compose.yaml  up -d
+            yarn workspace @vechain/hardhat-vechain test-coverage
 
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
