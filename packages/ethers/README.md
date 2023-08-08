@@ -83,6 +83,26 @@ module.exports = {
 };
 ```
 
+## Clauses support
+
+Vechain Thor network supports sending multiple clauses as part of one transaction. Clauses are then executed atomically on 
+a chain. Hardhat plugin supports Vechain tx construction with multiple clauses. Example code:
+
+```js
+const clauseBuilder = new ClausesBuilder(baseContract);
+const tx = await clauseBuilder.withClause({
+    args: [1],
+    abi: JSON.stringify([{ type: 'function', name: 'method1'}] ),
+    method: 'method1'
+}).withClause({
+    args: [2],
+    abi: JSON.stringify([{ type: 'function', name: 'method2'}] ),
+    method: 'method2'
+}).send()
+```
+
+Where `baseContract` is an instance of a deployed contract.
+
 ## Testing
 - Use Hardhat Ethers as usual
 ```js
