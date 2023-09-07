@@ -12,7 +12,6 @@ import { SimpleWallet, Wallet } from "@vechain/connex-driver";
 import { createWallet } from "./helpers/createWallet";
 import { createProvider } from "./helpers/createProvider";
 import { DelegateOpt } from "@vechain/web3-providers-connex/dist/types";
-import { Deferrable } from "ethers/lib/utils";
 import { randomBytes } from "crypto";
 import { TransactionRequest } from "@ethersproject/abstract-provider"
 import { VechainHardhatPluginError } from "./error";
@@ -55,7 +54,7 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
         }
     }
 
-    public async sign(transaction: Deferrable<TransactionRequest>) {
+    public async sign(transaction: TransactionRequest) {
         let key: Wallet.Key | undefined = undefined;
         const from = await transaction.from;
         if (this._wallet && from) {
