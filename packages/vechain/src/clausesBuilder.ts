@@ -37,7 +37,7 @@ export class ClausesBuilder {
     
     if (!this.provider.connex) {
       this.log.error('Error while getting provider');
-      throw new VechainHardhatPluginError('vechain hardhat plugin requires valid provider config for clauses operation')
+      throw new VechainHardhatPluginError('vechain hardhat plugin requires vechain provider for clauses operation')
     }
 
     const processedClausesPromises = this.clauses.map(async clause => {

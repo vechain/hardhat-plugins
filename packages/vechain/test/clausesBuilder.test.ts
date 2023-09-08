@@ -121,4 +121,33 @@ describe('builder tests', () => {
     }).send()
     expect(tx).toEqual(expectedTxResponse);
   });
+
+  it('should throw error', async () => {
+
+    const invalidConnexProviderWrapper = {
+    } as unknown as Provider;
+
+    const wallet = createWallet(config);
+    const provider = createProvider(config, wallet);
+    provider.then(resolved => {
+      jest.spyOn(resolved, 'request').mockResolvedValue(dummyResponse);
+    });
+
+    const baseContract = {
+      getAddress: jest.fn().mockReturnValue("0x0000000000000000000000000000456E65726779")
+    } as unknown as BaseContract;
+
+    const clauseBuilder = new ClausesBuilder(baseContract, invalidConnexProviderWrapper);
+    try {
+      await clauseBuilder.withClause({
+        args: [1],
+        abi: JSON.stringify([{ type: 'function', name: 'fakeMethod'}] ),
+        method: 'fakeMethod'
+      }).send()
+    } catch (e) {
+      const error = e as Error;
+      expect(error.message).toEqual('vechain hardhat plugin requires vechain provider for clauses operation')
+    }
+  });
+
 });

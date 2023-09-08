@@ -7,5 +7,5 @@ export function createNetwork(config: HttpNetworkConfig) {
         config.url = VECHAIN_URL_SOLO;
         console.info(`Using default localhost url for VeChain network: ${config.url}`);
     }
-    return new SimpleNet(config.url);
+    return new SimpleNet(config.url, 60000, 60000);
 }
