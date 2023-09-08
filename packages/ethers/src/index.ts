@@ -1,9 +1,8 @@
 import { extendEnvironment } from "hardhat/config";
 import { lazyObject } from "hardhat/plugins";
-import type EthersT from "ethers";
+import EthersT from "ethers";
 
 import { VechainHardhatPluginError } from "@vechain/hardhat-vechain";
-import { ConnexProviderWrapper } from "@vechain/hardhat-vechain";
 import "./type-extensions";
 
 import {
@@ -14,38 +13,14 @@ import {
     getImpersonatedSigner,
     getSigner,
     getSigners,
-} from "@nomiclabs/hardhat-ethers/internal/helpers";
-import { createUpdatableTargetProxy } from "@nomiclabs/hardhat-ethers/internal/updatable-target-proxy";
+    deployContract
+} from "@nomicfoundation/hardhat-ethers/internal/helpers";
+import { HardhatEthersProvider as HardhatEthersProviderT } from "@nomicfoundation/hardhat-ethers/internal/hardhat-ethers-provider";
 import { modifyFactory, modifyProvider } from "@vechain/web3-providers-connex/dist/ethers";
-import { EthersProviderWrapper } from "@nomiclabs/hardhat-ethers/internal/ethers-provider-wrapper";
-import { FactoryOptions, HardhatRuntimeEnvironment } from "hardhat/types";
 
-const registerCustomInspection = (BigNumber: any) => {
-    const inspectCustomSymbol = Symbol.for("nodejs.util.inspect.custom");
-
-    BigNumber.prototype[inspectCustomSymbol] = function () {
-        return `BigNumber { value: "${this.toString()}" }`;
-    };
-};
-
-const modified = (provider: ConnexProviderWrapper) => {
-    let modifiedProvider =  modifyProvider(new EthersProviderWrapper(provider as any));
-
-    let getDefaultSigner = modifiedProvider.getSigner.bind(modifiedProvider);
-    modifiedProvider.getSigner = (addressOrIndex) => {
-        let defaultSigner = getDefaultSigner(addressOrIndex);
-        defaultSigner.signTransaction = async (transaction) => {
-            return provider.sign(transaction)
-        }
-        return defaultSigner;
-    }
-    modifiedProvider.getNetwork = () => {
-        return provider.getVechainNetwork();
-    }
-
-    return modifiedProvider;
-}
-
+import * as thor from '@vechain/web3-providers-connex'
+import { Framework } from '@vechain/connex-framework'
+import { Driver, SimpleNet, SimpleWallet } from '@vechain/connex-driver'
 extendEnvironment(hre => {
     if (hre.vechain === undefined) {
         if (hre.network.name.includes("vechain")) {
@@ -54,22 +29,22 @@ extendEnvironment(hre => {
             return;
         }
     }
+
     hre.ethers = lazyObject(() => {
-        if (!hre.network.name.includes("vechain")) {
-            throw new VechainHardhatPluginError("@vechain/hardhat-ethers expects @vechain/hardhat-vechain");
+        const { ethers } = require("ethers") as typeof EthersT;
+        const { HardhatEthersProvider } = require("@nomicfoundation/hardhat-ethers/internal/hardhat-ethers-provider") as {
+            HardhatEthersProvider: typeof HardhatEthersProviderT;
         }
 
-        const { ethers } = require("ethers") as typeof EthersT;
-        registerCustomInspection(ethers.BigNumber);
-
-        const provider = hre.vechain!;
-        const jsonRpcProvider = modified(provider);
-        const { proxy } = createUpdatableTargetProxy(jsonRpcProvider);
+        const provider = new HardhatEthersProvider(
+            hre.vechain!,
+            hre.network.name
+        )
 
         return {
             ...ethers,
 
-            provider: proxy,
+            provider,
 
             getSigner: (address: string) => getSigner(hre, address),
             getSigners: () => getSigners(hre),
@@ -85,22 +60,7 @@ extendEnvironment(hre => {
                 const bound = getContractFactoryFromArtifact.bind(null, hre) as any;
                 return bound(...args).then(modifyFactory);
             }) as any,
-            deployContract: (async (
-                hre: HardhatRuntimeEnvironment,
-                name: string,
-                argsOrSignerOrOptions?: any[] | EthersT.Signer | FactoryOptions,
-                signerOrOptions?: EthersT.Signer | FactoryOptions
-            ) => {
-                let args = [];
-                if (Array.isArray(argsOrSignerOrOptions)) {
-                    args = argsOrSignerOrOptions;
-                } else {
-                    signerOrOptions = argsOrSignerOrOptions;
-                }
-                const bound = getContractFactory.bind(null, hre) as any;
-                const factory = await bound(name, signerOrOptions).then(modifyFactory);
-                return factory.deploy(...args);
-            }).bind(null, hre) as any
+            deployContract: deployContract.bind(null, hre) as any,
         };
     });
 });
