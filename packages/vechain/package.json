@@ -1,6 +1,6 @@
 {
     "name": "@vechain/hardhat-vechain",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "license": "MIT",
     "description": "Hardhat plugin for a VeChain provider",
     "homepage": "https://github.com/vechainfoundation/hardhat-plugins",
