@@ -41,6 +41,13 @@ extendEnvironment(hre => {
             hre.network.name
         )
 
+        provider.getNetwork = async function (this: any) {
+            const chainId = await this._hardhatProvider.send("eth_chainId");
+            var network  = new ethers.Network(this._networkName, chainId);
+            network.chainId = "0x" + network.chainId.toString(16).slice(-2)
+            return network;
+        }.bind(provider);
+
         return {
             ...ethers,
 
