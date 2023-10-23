@@ -2,15 +2,27 @@ import { BaseContract } from "ethers";
 import { VechainHardhatPluginError } from "./error";
 import logger from 'pino';
 import { Provider } from "@vechain/web3-providers-connex";
-export interface Clause {
-  args: any[],
-  abi: string,
-  method: string
-}
 
-export class ClausesBuilder {
-  private readonly clauses: Clause[] = [];
-  private readonly contract: BaseContract;
+
+/**
+ * A clause builder for VeChain.
+ *
+ * @example
+ *   const myErc721 = await ethers.getContractAt("MyERC721", "0x9e7e737B23DCBDf1cc48d8B7f40Fc3b2E3808C96");
+ *
+ *   const clausBuilder = new ClausesBuilder(myErc721, provider);
+ *
+ *   const {txid, signer } = clausBuilder
+ *     .withClause(myErc721.interface.encodeFunctionData("mint", ["0x9e7e737B23DCBDf1cc48d8B7f40Fc3b2E3808C96"]))
+ *     .withClause(myErc721.interface.encodeFunctionData("mint", ["0xf077b491b355E64048cE21E3A6Fc4751eEeA77fa"]))
+ *     .send();
+ *
+ *   console.log({txid, signer});
+ */
+
+export class ClausesBuilder <T extends BaseContract>{
+  private readonly functionCalls: string[] = [];
+  private readonly contract: T;
   private readonly provider: Provider;
 
   private log = logger({
@@ -19,38 +31,45 @@ export class ClausesBuilder {
     }
   });
 
-  constructor(contract: BaseContract, provider: Provider) {
+  constructor(contract: T, provider: Provider) {
     this.contract = contract;
     this.provider = provider;
   }
 
-  public withClause(clause: Clause): ClausesBuilder {
-    this.clauses.push(clause);
+
+  /**
+   * Add a clause to the builder
+   * @param functionData - The function ABI encoded with its arguments
+   *
+   * @returns The builder
+   */
+  public withClause(functionData: string): ClausesBuilder<T> {
+    this.functionCalls.push(functionData);
     return this;
   }
-
 
   public async send(): Promise<{
     txid: string
     signer: string
-  }> {    
-    
+  }> {
+
     if (!this.provider.connex) {
       this.log.error('Error while getting provider');
       throw new VechainHardhatPluginError('vechain hardhat plugin requires vechain provider for clauses operation')
     }
 
-    const processedClausesPromises = this.clauses.map(async clause => {
-      const abi = JSON.parse(clause.abi);
-      const functionAbi = abi.find((func: any) => func.type === 'function' && func.name === clause.method);
-      const address = await this.contract.getAddress();
-      const method = this.provider.connex.thor.account(address).method(functionAbi);
-      return method.asClause(clause.args);
-    });
-    
-    const processedClauses = await Promise.all(processedClausesPromises);
-    const signedTx = this.provider.connex.vendor.sign('tx', processedClauses);
+    const contractAddress = await this.contract.getAddress()
+
+    const clauses = this.functionCalls.map(functionCall => {
+      return {
+        to: contractAddress,
+        data: functionCall,
+        value: 0
+      }
+    })
+
+    const signedTx = this.provider.connex.vendor.sign('tx', clauses);
     return signedTx.request();
   }
-  
+
 }
