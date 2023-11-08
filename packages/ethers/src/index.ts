@@ -36,10 +36,44 @@ extendEnvironment(hre => {
             HardhatEthersProvider: typeof HardhatEthersProviderT;
         }
 
-        const provider = new HardhatEthersProvider(
+        var provider = new HardhatEthersProvider(
             hre.vechain!,
             hre.network.name
         )
+
+        provider.getNetwork = async function() {
+            const chainId = await this.send("eth_chainId", []);
+            const hexChainId = chainId.toString(16);
+            // const smallChainId = '0x' + hexChainId.substring(hexChainId.length - 2);
+            return new ethers.Network(hre.network.name, "0x" + hexChainId);
+        };
+
+        provider.getSigner = async (address?: string | number | undefined) => {
+
+            if (address === null || address === undefined) {
+                address = 0;
+            }
+            const accountsPromise = provider.send("eth_accounts", []);
+
+            // Account index
+            if (typeof address === "number") {
+                const accounts = await accountsPromise;
+                if (address >= accounts.length) {
+                    throw new Error(`Address index out of bounds: ${address}`);
+                }
+            
+            let defaultSigner = await getSigner(hre, accounts[address]);
+
+            defaultSigner.signTransaction = async (transaction: any) => {
+                return hre.vechain!.sign(transaction);
+            }
+                return defaultSigner;
+            }
+            else {
+                // If the address is a string, you might want to handle it differently or throw another error.
+                throw new Error(`Unsupported address type: ${address}`);
+            }
+        }
 
         return {
             ...ethers,

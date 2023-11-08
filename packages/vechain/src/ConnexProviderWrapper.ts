@@ -56,12 +56,15 @@ export class ConnexProviderWrapper extends EventEmitter implements EthereumProvi
 
     public async sign(transaction: TransactionRequest) {
         let key: Wallet.Key | undefined = undefined;
-        const from = await transaction.from;
-        if (this._wallet && from) {
+        const from = await transaction?.from;
+        // If from is null or undefined, use the first key from the wallet (if it exists)
+        if (!from && this._wallet && this._wallet.list.length > 0) {
+            key = this._wallet.list[0];
+        } else if (this._wallet && from) {
             const keys = this._wallet.list;
-            const found = keys.find(k => k.address === from.toLowerCase());
+            const found = keys.find(k => k.address === from?.toLowerCase());
             if (found) {
-                key = found
+                key = found;
             }
         }
         if (key === undefined) {
