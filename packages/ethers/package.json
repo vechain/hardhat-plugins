@@ -1,6 +1,6 @@
 {
     "name": "@vechain/hardhat-ethers",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "license": "MIT",
     "description": "Hardhat Vechain Ethers Plugin",
     "repository": "github:vechainfoundation/hardhat-plugins",
@@ -16,7 +16,7 @@
         "ethers"
     ],
     "files": [
-        "dist",
+        "dist/**",
         "LICENSE",
         "README.md"
     ],
