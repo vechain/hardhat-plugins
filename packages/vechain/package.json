@@ -3,8 +3,8 @@
     "version": "0.1.7",
     "license": "MIT",
     "description": "Hardhat plugin for a VeChain provider",
-    "homepage": "https://github.com/vechainfoundation/hardhat-plugins",
-    "repository": "github:vechainfoundation/hardhat-plugins",
+    "homepage": "https://github.com/vechain/hardhat-plugins",
+    "repository": "github:vechain/hardhat-plugins",
     "author": "Electi Consulting LTD",
     "keywords": [
         "thor",
