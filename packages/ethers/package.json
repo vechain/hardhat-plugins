@@ -3,7 +3,8 @@
     "version": "0.1.6",
     "license": "MIT",
     "description": "Hardhat Vechain Ethers Plugin",
-    "repository": "github:vechainfoundation/hardhat-plugins",
+    "homepage": "https://github.com/vechain/hardhat-plugins",
+    "repository": "github:vechain/hardhat-plugins",
     "author": "Electi Consulting LTD",
     "main": "dist/index.js",
     "keywords": [
