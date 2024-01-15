@@ -1,6 +1,6 @@
 {
     "name": "@vechain/hardhat-ethers",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "license": "MIT",
     "description": "Hardhat Vechain Ethers Plugin",
     "homepage": "https://github.com/vechain/hardhat-plugins",

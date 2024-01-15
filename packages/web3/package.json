@@ -1,6 +1,6 @@
 {
     "name": "@vechain/hardhat-web3",
-    "version": "0.1.4",
+    "version": "0.1.7",
     "license": "MIT",
     "description": "Hardhat Vechain Web3 Plugin",
     "homepage": "https://github.com/vechain/hardhat-plugins",
